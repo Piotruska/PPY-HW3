@@ -41,5 +41,23 @@ def get_int_input(prompt):
             return int(response)
         print("Invalid input. Please enter a number.")
 
+def password_generator_program():
+    run_program = True
+    while run_program:
+        add_digits = get_yn_input("Include digits? (y/n): ").lower() == 'y'
+        add_letters = get_yn_input("Include letters? (y/n): ").lower() == 'y'
+        add_special = get_yn_input("Include special characters? (y/n): ").lower() == 'y'
+        remove_characters = input("Enter characters to remove: ")
+        length = get_int_input("Password length: ")
 
+        if length < 8:
+            print("Password length cannot be smaller than 8 characters.")
+            continue
+
+        password = generate_password(add_digits, add_letters, add_special, remove_characters, length)
+        print("Generated password:", password)
+
+        confirm = input("Confirm password? (y/n): ").lower()
+        if confirm == 'y':
+            run_program = False
 
