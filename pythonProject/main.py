@@ -34,5 +34,12 @@ def get_yn_input(prompt):
             return response
         print("Invalid input. Please enter 'y' or 'n'.")
 
+def get_int_input(prompt):
+    while True:
+        response = input(prompt).strip()
+        if response.isdigit():
+            return int(response)
+        print("Invalid input. Please enter a number.")
+
 
 
