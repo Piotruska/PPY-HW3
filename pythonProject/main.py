@@ -17,14 +17,13 @@ def generate_password(add_digits=True,
         chars += string.punctuation
 
     remove_chars_array = remove_characters.split()
-    acceptable_chars = chars.split()
+    acceptable_chars = list(chars)
 
-    if len(remove_chars_array) != 0:
-        for char in remove_chars_array:
-            if char in acceptable_chars:
-                acceptable_chars.remove(char)
+    for char in remove_chars_array:
+        if char in acceptable_chars:
+            acceptable_chars.remove(char)
 
-    password = ''.join(random.choice(acceptable_chars) for x in range(length))
+    password = ''.join(random.choice(acceptable_chars) for _ in range(length))
     return password
 
 def get_yn_input(prompt):
