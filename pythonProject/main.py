@@ -27,5 +27,12 @@ def generate_password(add_digits=True,
     password = ''.join(random.choice(acceptable_chars) for x in range(length))
     return password
 
+def get_yn_input(prompt):
+    while True:
+        response = input(prompt).strip().lower()
+        if response == 'y' or response == 'n':
+            return response
+        print("Invalid input. Please enter 'y' or 'n'.")
+
 
 
