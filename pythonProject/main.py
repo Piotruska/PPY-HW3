@@ -61,3 +61,4 @@ def password_generator_program():
         if confirm == 'y':
             run_program = False
 
+password_generator_program()
