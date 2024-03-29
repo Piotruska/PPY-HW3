@@ -23,7 +23,8 @@ def generate_password(add_digits=True,
         if char in acceptable_chars:
             acceptable_chars.remove(char)
 
-# Task 2
+    password = ''.join(random.choice(acceptable_chars) for _ in range(length))
+    return password
 
 def get_yn_input(prompt):
     while True:
@@ -60,3 +61,54 @@ def password_generator_program():
             run_program = False
 
 password_generator_program()
+
+
+# Task 2
+
+def order_pizza():
+    run_program = True
+    while run_program:
+        print("Welcome to the Pizza Ordering System!")
+        toppings = input("Enter toppings separated by commas: ").split(',')
+        size = input("Enter size (small, medium, large): ").lower()
+        crust_type = input("Enter crust type (thin, thick): ").lower()
+        make_pizza(*toppings, size=size, crust=crust_type)
+
+        choice = input("Do you want to order another pizza? (yes/no): ").lower()
+        if choice != 'yes':
+            print("Thank you for using the Pizza Ordering System. Have a great day!")
+            run_program = False
+
+
+def make_pizza(*toppings, **kwargs):
+    size = kwargs.get('size')
+    crust = kwargs.get('crust')
+    price = 0
+    toppings_number = len(toppings)
+
+    if toppings_number < 2 or toppings_number > 7:
+        print("Error: Invalid number of toppings.")
+        return
+    else:
+        price = calculate_price(size, crust, toppings_number)
+        print("--------------------------")
+        print("Ordered Pizza:")
+        print("--------------------------")
+        print("Size:", size)
+        print("Crust Type:", crust)
+        print("Toppings:", ', '.join(toppings))
+        print("Total Price: $", price)
+        print()
+
+
+def calculate_price(size, crust, toppings_number):
+    total_price = 0
+    size_price = {'small': 10, 'medium': 15, 'large': 20}
+    crust_prices = {'thin': 0, 'thick': 3}
+    total_price += size_price[size] + crust_prices[crust]
+    if toppings_number > 2:
+        for _ in range(toppings_number - 2):
+            total_price += 2
+    return total_price
+
+order_pizza()
