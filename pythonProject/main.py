@@ -23,8 +23,7 @@ def generate_password(add_digits=True,
         if char in acceptable_chars:
             acceptable_chars.remove(char)
 
-    password = ''.join(random.choice(acceptable_chars) for _ in range(length))
-    return password
+# Task 2
 
 def get_yn_input(prompt):
     while True:
